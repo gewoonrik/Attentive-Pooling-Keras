@@ -23,11 +23,11 @@ conv_4 = Conv1D(300,
                 strides=1)(input)
 shared = Model(input, conv_4)
 
-pr_1 =  Input(shape=(None, 300), dtype='float32')
-pr_2 =  Input(shape=(None, 300), dtype='float32')
+input_1 =  Input(shape=(None, 300), dtype='float32')
+input_2 =  Input(shape=(None, 300), dtype='float32')
 
-out_1 = shared(pr_1)
-out_2 = shared(pr_2)
+out_1 = shared(input_1)
+out_2 = shared(input_2)
 
 attention = AttentionLayer()([out_1,out_2])
 
@@ -45,4 +45,4 @@ out_2 = dot([att_2, out_2], axes=1)
 distance = Lambda(euclidean_distance,
                   output_shape=eucl_dist_output_shape)([out_1, out_2])
 
-model = Model(input=[pr_1, pr_2], output=distance)
+model = Model(input=[input_1, input_2], output=distance)
