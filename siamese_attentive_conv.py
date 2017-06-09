@@ -14,9 +14,9 @@ def eucl_dist_output_shape(shapes):
     return (shape1[0], 1)
 
 
-input =  Input(shape=(None,config.embeddings_size), dtype='float32')
+input =  Input(shape=(None,300), dtype='float32')
 
-conv_4 = Conv1D(config.nr_filters*3,
+conv_4 = Conv1D(300,
                 4,
                 padding='same',
                 activation='relu',
